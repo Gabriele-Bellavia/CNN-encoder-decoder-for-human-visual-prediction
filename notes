@@ -1,6 +1,6 @@
 # Notes and ideas for the project
 
-### Notes:
+### Notes from the assignment:
 
 Reference paper: understand the problem and possible solution.
 Dataset paper: introduces the suggested dataset and explains how it has been created.
@@ -74,4 +74,10 @@ vs ground-truth one)
 
 Visualize the output: since the goal is to predict where people focus, the results should be
 consistent with what one should observe.
+
+---------------------------------------------------------
+
+###Notes from reference paper (Wang)
+
+
 
