@@ -1,1 +1,5 @@
-dataset/
+dataset.zip
+references/
+.ipynb_checkpoints
+pycache/
+__pycache__/blackbox.cpython-312.pyc

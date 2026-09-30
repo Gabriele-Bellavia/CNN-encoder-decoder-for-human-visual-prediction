@@ -27,3 +27,20 @@ seems to span from ~45 to ~70.
 
 Idk what to do and whether these data will be useful but ftm this is what i know. Maybe i can
 use them for reconstructing the ground-truth maps or use them as validation metrics.	
+
+11/08/2026
+
+From this reference:
+https://articles.shadecoder.com/vggnet-a-comprehensive-guide-for-2025
+It is suggested to not train VGGnet from scratch since it has so many parameters that can overfit
+easily. Suggestion: use pretrained weights and fine tune the classifier hea (or apply
+data augmentation/regularization).
+Training from scratch: https://www.digitalocean.com/community/tutorials/vgg-from-scratch-pytorch
+
+Pytorch deconvolution may be ConvTranspose2d
+
+14/08/2026
+
+First architecture i want to try (first one suggested by professor) is an encoder-decoder that
+consits of a CNN encoder, then a decoder made alternating upsampling and convolutional layer
+to try to learn the saliency map from the feature maps given by the encoder. 
