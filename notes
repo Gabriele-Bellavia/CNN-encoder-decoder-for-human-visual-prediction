@@ -1,0 +1,83 @@
+# Notes and ideas for the project
+
+### Notes from the assignment:
+
+Reference paper: understand the problem and possible solution.
+Dataset paper: introduces the suggested dataset and explains how it has been created.
+
+### Problem:
+
+What is visual saliency? Typically, humans do not process the entire image uniformly but only
+on specific areas.
+Visual saliency refers to the regions of an image that naturally attract human attention.
+
+Actually, people look at specific regions, which are then well-focuse, but the area of the
+perceived image is way larger than the are we actually see.
+
+This information may be useful for several purposes, e.g., compression. Suppose we want to
+compress an image, that is, reducing the number of pixels representing the content without
+affecting too much the perceived quality. 
+
+One way to proceed is to quantize more the regione where humans were not focus, while keeping
+higher quality in more salient regions. In this way, the final perceived quality remains high
+as humans may be focused on salient regions and so they are not affecting by higher degradations
+in the rest of the image.
+
+Other applications for streaming purposes: if we want to optimize a streaming pipeline, we can 
+send at higher bit-rates more salient portions of the image while reducing the bit-rate for all
+the rest of the content.
+
+### Saliency prediction:
+
+One should track human focusing to track saliency information. However, this is costly and
+non-feasible in most cases. Then, the objective is to produce a computational model of visual
+attention, predicting where humans will look. 
+
+The idea is to map an image to a heatmap (or saliency map) where we define for each pixel the
+probability that humans will focus on it:
+			f(IMAGE) = HEATMAP
+Brighter pixel -> higher probability to be salient pixel
+
+### Dataset:
+
+SALICON dataset contains a large set of saliency annotations on the popular MS COCO: 10k images
+for training, 5k for validation and 5k for test.
+
+Problem with this dataset: does not provide ground-truth maps for the test set, but it requires
+to upload them to their evaluation server. To avoid this: one may split the validation set into
+two subset and use one of them for validation and other for testing. Another solution is to use 
+MIT1003 dataset for testing
+
+[https://people.csail.mit.edu/tjudd/WherePeopleLook/index.html](https://people.csail.mit.edu/tjudd/WherePeopleLook/index.html)
+
+### Possible tasks:
+
+- Base: implement a simple saliency prediction model designing a CNN encoder (e.g. ResNet) and
+a corresponding decoder using upsampling layers to produce the final map.
+
+- Intermediate: improve the baseline model by introducing architectural modifications inspired by
+reference paper (extract features at different depths and fuse them together, add skip 
+connections (can be beneficial for this task))
+
+- Advanced: replace the CNN encoder with a lightweight transform-based model and use it for
+feature extraction (since it is more advanced, it should allow to have a more complete and 
+complex representation of the contant, achieving in principle a better final result).
+
+###Suggestion:
+
+Start from a simple network, it is easier to understand what happens and modfying accordingly.
+Then, design more complex ones.
+
+Choose a proper loss function: start with MSE (compare predicted mask with ground-truth one)
+and later replace or combine it with other components (for example, predicted probability distr
+vs ground-truth one)
+
+Visualize the output: since the goal is to predict where people focus, the results should be
+consistent with what one should observe.
+
+---------------------------------------------------------
+
+###Notes from reference paper (Wang)
+
+
+

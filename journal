@@ -1,0 +1,46 @@
+### This is just a journal where i keep track of the stuff i do daily
+
+21/07/2026
+
+Importing and inspecting dataset.
+
+10/08/2026
+
+Inspected dataset. Fixations directiory contains '.mat' files. These files contain info about 
+each data point. In particular, they have the following fields:
+-image
+-resolution
+-gaze: which contains the truth gaze data from subject (each structure corresponds to one 
+	subject)
+	-location: this is the image location of the raw data gaze points [x,y] 
+	-timestamp: the timestamp (ms) of each raw gaze point
+	-fixations: fixations points [x,y]
+These are training and validation data, while testing contains only image and resolution.
+From these data basically i should be able to reconstruct the trajectory of the subject while
+observing the image (this for each subject). Each point is a pair [x,y] and the timestamp is
+the moment at which the subject observes that point. From what i have understood, these points
+are not obtaine with an eye tracker, but with something else called mouse (idk whether is a 
+pointer or whatever). Therefore location[i] + timestamp[i] = trajectory. Instead, fixations 
+contains points indicated as fixations points obtained somehow. Therefore, for each image,
+i have the fixations from different subjects (each image has a different number of subjects that
+seems to span from ~45 to ~70.
+
+Idk what to do and whether these data will be useful but ftm this is what i know. Maybe i can
+use them for reconstructing the ground-truth maps or use them as validation metrics.	
+
+11/08/2026
+
+From this reference:
+https://articles.shadecoder.com/vggnet-a-comprehensive-guide-for-2025
+It is suggested to not train VGGnet from scratch since it has so many parameters that can overfit
+easily. Suggestion: use pretrained weights and fine tune the classifier hea (or apply
+data augmentation/regularization).
+Training from scratch: https://www.digitalocean.com/community/tutorials/vgg-from-scratch-pytorch
+
+Pytorch deconvolution may be ConvTranspose2d
+
+14/08/2026
+
+First architecture i want to try (first one suggested by professor) is an encoder-decoder that
+consits of a CNN encoder, then a decoder made alternating upsampling and convolutional layer
+to try to learn the saliency map from the feature maps given by the encoder. 
