@@ -1,30 +1,26 @@
-# Learning-based Visual Saliency Prediction
+Learning-based Visual Saliency Prediction
 
-### This repo is for my project for the course of Neural Network and Deep Learning.
+This repo contains my university project for the Neural Network and Deep Learning course. The project explores visual saliency prediction using convolutional neural networks, with a focus on comparing different model architectures and training configurations.
 
-Abstract:
+Visual saliency prediction aims to estimate which regions of an image are likely to attract human visual attention. Given an input image, a model produces a saliency map that assigns higher values to regions predicted to receive more attention.
 
-Visual saliency is a property of human vision that describes the extent to which 
-a region of an image attracts human attention compared to other regions. Practically, it answers
-the question: when observing an image, which regions are most likely to attract a viewer's attention 
-first?  Typically, people observe regions that are much smaller than the whole perceived
-image.
+This repo includes experiments with single-stream and multi-level ResNet-18 architectures, together with notebooks for testing the models and visualizing their predictions.
 
-The objective of this project is to reconstruct the salient regions of images for human vision.
-This can have several potential applications. For instance, it can be used in image compression 
-to reduce the number of pixels, and then the amount of data, representing the relevant content
-without affecting too much the perceived image. Moreover, it can be used for streaming pipelines
-that can be then optimized by keeping high quality for salient regions and compress non-salient
-content.
+Workflow
 
-Workflow:
+The work starts with the exploration and preparation of the SALICON dataset. Model development and hyperparameter tuning are followed by training and evaluation. Predicted saliency maps are then inspected alongside the reference maps to examine the models’ behavior and identify their limitations.
 
+Repository contents
 
+SSresnet18_tuning.ipynb and SSresnet18_training.ipynb contain the tuning and training experiments for the single-stream model.
 
-References:
-- Reference paper: W. Wang and J. Shen, “Deep Visual Attention Prediction,” in IEEE Transactions on Image Processing, vol. 27, no. 5, pp. 2368-2378, May 2018, doi: 10.1109/TIP.2017.2787612.
+MLresnet18_tuning.ipynb and MLresnet18_training.ipynb contain the corresponding experiments for the multi-level model.
 
-- Dataset paper: Jiang, Ming, et al. “Salicon: Saliency in context.” Proceedings of the IEEE conference on computer vision and pattern recognition. 2015.
+Saliency_prediction.ipynb and Saliency_testing.ipynb contain notebooks related to saliency prediction and model testing.
 
-- Dataset download: [https://www.kaggle.com/datasets/roshan401/salicon](https://www.kaggle.com/datasets/roshan401/salicon)
+NNDL_report.pdf provides the accompanying final project report.
+References
 
+W. Wang and J. Shen. “Deep Visual Attention Prediction.” IEEE Transactions on Image Processing, 27(5), 2368–2378, 2018. DOI: 10.1109/TIP.2017.2787612.
+
+M. Jiang et al. “SALICON: Saliency in Context.” Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2015.
